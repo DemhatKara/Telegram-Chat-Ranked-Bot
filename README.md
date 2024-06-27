@@ -24,7 +24,7 @@ This Telegram bot monitors group chat messages and assigns points based on messa
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your_username/telegram-chat-rank-bot.git
+   git clone https://github.com/DemhatKara/telegram-chat-rank-bot.git
 Navigate into the project directory:
 
 bash
