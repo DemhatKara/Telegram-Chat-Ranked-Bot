@@ -1,11 +1,11 @@
 import requests
 import re
 
-# Bot tokeninizi buraya ekleyin
-TOKEN = "7268649705:AAHQMEaNjSZ_cSnsUj0RhcynEblaNupI-l4"
+# Add your bot token here
+TOKEN = "YOUR_BOT_TOKEN_HERE"
 URL = f"https://api.telegram.org/bot{TOKEN}/"
 
-# Mesaj sayısını ve kullanıcıları takip etmek için sözlükler oluşturun
+# Create dictionaries to track message counts and users
 chat_message_counts = {}
 user_message_counts = {}
 
@@ -22,20 +22,20 @@ def process_message(message):
     user_name = message["from"]["username"]
     message_text = message.get("text", "")
 
-    # Puanlama için mesajı analiz et
+    # Analyze the message for scoring
     message_score = 1
 
-    # Regex ile mesajda https: veya http: var mı kontrol et
+    # Use regex to check if the message contains http: or https:
     if re.search(r'https?://', message_text):
         message_score = 5
 
-    # Mesaj sayısını güncelle
+    # Update message count
     if chat_id in chat_message_counts:
         chat_message_counts[chat_id] += message_score
     else:
         chat_message_counts[chat_id] = message_score
 
-    # Kullanıcı mesaj sayısını güncelle
+    # Update user message count
     if user_id in user_message_counts:
         user_message_counts[user_id]['count'] += message_score
     else:
@@ -43,14 +43,14 @@ def process_message(message):
 
 def get_rankings():
     sorted_users = sorted(user_message_counts.items(), key=lambda x: x[1]['count'], reverse=True)
-    rankings = "En aktif kullanıcılar:\n"
+    rankings = "Most active users:\n"
     for rank, (user_id, user_info) in enumerate(sorted_users, start=1):
-        rankings += f"{rank}. @{user_info['username']}: {user_info['count']} puan\n"
+        rankings += f"{rank}. @{user_info['username']}: {user_info['count']} points\n"
     return rankings
 
 def handle_command(command, chat_id):
     if command == "/start":
-        send_message(chat_id, "Merhaba! Ben botunuzdayım. Sohbetlerdeki mesaj sayılarını takip edip, /rankings komutu ile en aktif kullanıcıları gösterebilirim.")
+        send_message(chat_id, "Hello! I am your bot. I track the number of messages in chats and can show the most active users with the /rankings command.")
     elif command == "/rankings":
         rankings = get_rankings()
         send_message(chat_id, rankings)
