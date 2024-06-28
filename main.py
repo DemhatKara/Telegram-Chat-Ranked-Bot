@@ -72,7 +72,7 @@ def handle_command(command, chat_id):
     elif command == "/rankings":
         rankings = get_rankings()
         send_message(chat_id, rankings)
-    elif command == "/dynamoreset":
+    elif command == "/reset":
         global chat_message_counts, user_message_counts
         chat_message_counts = {}
         user_message_counts = {}
