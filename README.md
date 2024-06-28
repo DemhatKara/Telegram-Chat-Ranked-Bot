@@ -1,47 +1,43 @@
 # Telegram Chat Rank Bot
-
-A Telegram bot that counts messages in group chats and ranks users based on their activity.
-
-## Overview
-
-This Telegram bot monitors group chat messages and assigns points based on message activity. It ranks users by the total number of points they accumulate from their messages.
+Telegram bot that tracks message activity in a chat and rewards users with points based on the content and length of their messages. The bot can display the most active users and reset the scoring system on command.
 
 ## Features
 
-- Counts messages in group chats.
-- Assigns 1 point per regular message.
-- Assigns 5 points per message containing a URL (https:// or http://).
-- Provides rankings of the most active users in the chat.
+- Track and score messages in a Telegram chat.
+- Award points based on message length and content.
+- Display rankings of the most active users.
+- Reset the scoring system with a command.
+
+## Scoring System
+
+- Every message gets 1 point.
+- Messages starting with `https:` or `http:` get an additional 15 points.
+- Messages with less than 15 words get an additional 1 point.
+- Messages with 15-24 words get an additional 5 points.
+- Messages with 25-34 words get an additional 10 points.
+- Messages with 35 or more words get an additional 15 points.
+
+## Commands
+
+- `/start`: Display a welcome message and information about the bot.
+- `/rankings`: Display the most active users.
+- `/reset`: Reset the scoring system and notify the chat.
 
 ## Setup
 
-### Prerequisites
+1. Clone the repository.
+2. Install the required dependencies:
+    ```bash
+    pip install requests
+    ```
+3. Replace `YOUR_BOT_TOKEN` in the `main.py` file with your Telegram bot token.
+4. Run the bot:
+    ```bash
+    ```
 
-- Python 3.x
-- Libraries: aiogram
+## Usage
 
-### Installation
+Invite telegrambot to your Telegram group and start interacting. Use the provided commands to see the most active users and manage the scoring system.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/DemhatKara/telegram-chat-rank-bot.git
-Navigate into the project directory:
 
-bash
-Kodu kopyala
-cd telegram-chat-rank-bot
-Install dependencies:
 
-bash
-Kodu kopyala
-pip install -r requirements.txt
-Configuration
-Obtain your Telegram Bot API token from @BotFather.
-Replace TOKEN in main.py with your actual bot token.
-Usage
-Start the bot.
-Add it to your Telegram group chat.
-Bot will automatically start counting messages and assigning points.
-Use /rankings command to see the leaderboard of active users.
-Contributing
-Contributions are welcome! If you have suggestions, improvements, or bug fixes, feel free to open issues or pull requests.
